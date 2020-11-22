@@ -4,18 +4,10 @@ using System.Collections.Generic;
 public class GeneratorIsland : MonoBehaviour 
 {
 	[Header("Prefab")]
-	public ChunkIslandBase[] PrefabIslandsBase;
-	public ChunkBlock[] PrefabBlock;
-	public GameObject[] PrefabNatureDetails;
+	public IslandPrefab Prefab;
 	
 	[Header("Settings")]
-	public bool IsNewIsland = false;
-	
-	private List<ChunkBlock> _prefabBlock = new List<ChunkBlock>();
-	private List<GameObject> _prefabNatureDetails = new List<GameObject>();
-	
-	private int _isladeBaseID;
-	private int[] _prefabBlockID;
+	public SaveIslandData IslandData;
 
 	public void Generate()
 	{
@@ -27,56 +19,23 @@ public class GeneratorIsland : MonoBehaviour
 	private void Start()
 	{
 		Generate();
+		ClearTempObjects();
 	}
 	
 	private void CreateSecondChunk()
-	{
-		int[] tempPrefabId = new int[PrefabBlock.Length];
-		
-		if (IsNewIsland) 
+	{	
+		for (int i = 0; i < Prefab.IslandsBase[IslandData.IslandBaseID].GroundChunkPosition.Length; i++)
 		{
-			_prefabBlockID = new int[tempPrefabId.Length];
+			IslandData.PrefabBoxesID.Add(RandomInt(Prefab.Boxes.Length));
+			Prefab.ListBoxes.Add(Instantiate(Prefab.Boxes[IslandData.PrefabBoxesID[i]], Prefab.IslandsBase[IslandData.IslandBaseID].GroundChunkPosition[i].position, RandomRotate()));
 		}
-		
-		for (int i = 0; i < PrefabBlock.Length - 1; i++)
-		{
-			if (IsNewIsland) 
-			{
-				tempPrefabId[i] = RandomPrefab(PrefabBlock.Length);
-				_prefabBlockID[i] = tempPrefabId[i];
-			}
-			else
-			{
-				tempPrefabId[i] = _prefabBlockID[i];
-			}
-		}
-		
-		int prefabId = 0;
-		
-		for (int i = 0; i < PrefabIslandsBase[_isladeBaseID].GroundChunkPosition.Length; i++)
-		{
-			_prefabBlock.Add(Instantiate(PrefabBlock[tempPrefabId[prefabId]], PrefabIslandsBase[_isladeBaseID].GroundChunkPosition[i].position, RandomRotate()));
-			
-			if (prefabId < PrefabBlock.Length - 1)
-			{
-				prefabId++;
-			}
-			else
-			{
-				prefabId = 0;
-			}
-		}
-		
 	}
 			
 	private void CreateFirstChunk()
 	{
-		if (IsNewIsland)
-		{
-			_isladeBaseID = RandomPrefab(PrefabIslandsBase.Length);
-		}
+		IslandData.IslandBaseID = RandomInt(Prefab.IslandsBase.Length);
 		
-		Instantiate(PrefabIslandsBase[_isladeBaseID], Vector3.zero, RandomRotate());
+		IslandData.IslandBaseTransform = Instantiate(Prefab.IslandsBase[IslandData.IslandBaseID], transform.position, RandomRotate()).transform;
 		
 //		_spawnedChunks.Add(Instantiate(ObjectsOsnova[Random.Range(0, ObjectsOsnova.Length)]));
 //		
@@ -87,22 +46,21 @@ public class GeneratorIsland : MonoBehaviour
 	}
 	
 	private void CreateDetailsChunk()
-	{
-		int prefabId = 0;
-		
-		int prefabRandom = RandomPrefab(PrefabNatureDetails.Length);
-		
-		
-		for (int i = 0; i < _prefabBlock.Count; i++)
+	{			
+		for (int i = 0; i < Prefab.ListBoxes.Count; i++)
 		{
-			for (int x = 0; x < _prefabBlock[i].TreesPosition.Length; x++)
+			for (int x = 0; x < Prefab.ListBoxes[i].TreesPosition.Length; x++)
 			{
-				Instantiate(PrefabNatureDetails[prefabRandom], _prefabBlock[i].TreesPosition[x].position, RandomRotate());
+				IslandData.PrefabTreesID.Add(RandomInt(Prefab.Trees.Length));
+				Vector3 randomPosition = new Vector3(Prefab.ListBoxes[i].TreesPosition[x].position.x, Prefab.ListBoxes[i].TreesPosition[x].position.y, Prefab.ListBoxes[i].TreesPosition[x].position.z);
+				IslandData.PrefabTreesTransform.Add(Instantiate(Prefab.Trees[IslandData.PrefabTreesID[x]], Prefab.ListBoxes[i].TreesPosition[x].position, RandomRotate()).transform);
 			}
 		}
+		
+		
 	}
 	
-	private int RandomPrefab(int endValue)
+	private int RandomInt(int endValue)
 	{
 		return Random.Range(0, endValue);
 	}
@@ -112,21 +70,28 @@ public class GeneratorIsland : MonoBehaviour
 		return Quaternion.Euler(0, Random.Range(-361,360), 0);
 	}
 	
-	private void ClearMap()
-	{
-		//GameObject[] temp = 
-	}
-	
 	private bool RandomBool()
 	{
 		return Random.Range(0,10) >= 5;
 	}
 	
+	private void ClearTempObjects()
+	{
+		GameObject[] temp = GameObject.FindGameObjectsWithTag("TempObjectForCreateIsland");
+		
+		for (int i = 0; i < temp.Length; i++)
+		{
+			Destroy(temp[i]);
+		}
+	}
+	
 	private void Update()
 	{
 		if (Input.GetKeyDown("g")) {
-			_prefabBlock.Clear();
+			Prefab.ListBoxes.Clear();
+			IslandData.PrefabBoxesID.Clear();
 			Generate();
 		}
 	}
 }
+

@@ -57,6 +57,8 @@
      <Compile Include="Assets\Scripts\Generator Map\ChunkDefoult.cs" />
      <Compile Include="Assets\Scripts\Generator Map\ChunkIslandBase.cs" />
      <Compile Include="Assets\Scripts\Generator Map\GeneratorIsland.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\IslandPrefab.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\SaveIslandData.cs" />
      <Compile Include="Assets\Scripts\SeasonGameWorld.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
