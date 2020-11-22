@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class GeneratorMap : MonoBehaviour 
+public class GeneratorIsland : MonoBehaviour 
 {
 	[Header("Prefab")]
 	public ChunkIslandBase[] PrefabIslandsBase;
-	public ChunkGround[] PrefabGround;
-	public GameObject[] PrefabChunkDetailsNature;
+	public ChunkBlock[] PrefabBlock;
+	public GameObject[] PrefabNatureDetails;
 	
 	[Header("Settings")]
-	public bool IsNewIslad = false;
+	public bool IsNewIsland = false;
 	
-	private List<ChunkDefoult> _prefabGround = new List<ChunkDefoult>();
+	private List<ChunkBlock> _prefabBlock = new List<ChunkBlock>();
+	private List<GameObject> _prefabNatureDetails = new List<GameObject>();
 	
 	private int _isladeBaseID;
-	private int[] _prefabGroundId;
+	private int[] _prefabBlockID;
 
 	public void Generate()
 	{
@@ -30,23 +31,23 @@ public class GeneratorMap : MonoBehaviour
 	
 	private void CreateSecondChunk()
 	{
-		int[] tempPrefabId = new int[PrefabGround.Length];
+		int[] tempPrefabId = new int[PrefabBlock.Length];
 		
-		if (IsNewIslad) 
+		if (IsNewIsland) 
 		{
-			_prefabGroundId = new int[tempPrefabId.Length];
+			_prefabBlockID = new int[tempPrefabId.Length];
 		}
 		
-		for (int i = 0; i < PrefabGround.Length - 1; i++)
+		for (int i = 0; i < PrefabBlock.Length - 1; i++)
 		{
-			if (IsNewIslad) 
+			if (IsNewIsland) 
 			{
-				tempPrefabId[i] = RandomPrefab(PrefabGround.Length);
-				_prefabGroundId[i] = tempPrefabId[i];
+				tempPrefabId[i] = RandomPrefab(PrefabBlock.Length);
+				_prefabBlockID[i] = tempPrefabId[i];
 			}
 			else
 			{
-				tempPrefabId[i] = _prefabGroundId[i];
+				tempPrefabId[i] = _prefabBlockID[i];
 			}
 		}
 		
@@ -54,9 +55,9 @@ public class GeneratorMap : MonoBehaviour
 		
 		for (int i = 0; i < PrefabIslandsBase[_isladeBaseID].GroundChunkPosition.Length; i++)
 		{
-			_prefabGround.Add(Instantiate(PrefabGround[tempPrefabId[prefabId]], PrefabIslandsBase[_isladeBaseID].GroundChunkPosition[i].position, RandomRotate()));
+			_prefabBlock.Add(Instantiate(PrefabBlock[tempPrefabId[prefabId]], PrefabIslandsBase[_isladeBaseID].GroundChunkPosition[i].position, RandomRotate()));
 			
-			if (prefabId < PrefabGround.Length - 1)
+			if (prefabId < PrefabBlock.Length - 1)
 			{
 				prefabId++;
 			}
@@ -70,7 +71,7 @@ public class GeneratorMap : MonoBehaviour
 			
 	private void CreateFirstChunk()
 	{
-		if (IsNewIslad)
+		if (IsNewIsland)
 		{
 			_isladeBaseID = RandomPrefab(PrefabIslandsBase.Length);
 		}
@@ -89,14 +90,14 @@ public class GeneratorMap : MonoBehaviour
 	{
 		int prefabId = 0;
 		
-		int prefabRandom = RandomPrefab(PrefabChunkDetailsNature.Length);
+		int prefabRandom = RandomPrefab(PrefabNatureDetails.Length);
 		
 		
-		for (int i = 0; i < _prefabGround.Count; i++)
+		for (int i = 0; i < _prefabBlock.Count; i++)
 		{
-			for (int x = 0; x < _prefabGround[i].DetailsPosition.Length; x++)
+			for (int x = 0; x < _prefabBlock[i].TreesPosition.Length; x++)
 			{
-				Instantiate(PrefabChunkDetailsNature[prefabRandom], _prefabGround[i].DetailsPosition[x].position, RandomRotate());
+				Instantiate(PrefabNatureDetails[prefabRandom], _prefabBlock[i].TreesPosition[x].position, RandomRotate());
 			}
 		}
 	}
@@ -111,6 +112,11 @@ public class GeneratorMap : MonoBehaviour
 		return Quaternion.Euler(0, Random.Range(-361,360), 0);
 	}
 	
+	private void ClearMap()
+	{
+		//GameObject[] temp = 
+	}
+	
 	private bool RandomBool()
 	{
 		return Random.Range(0,10) >= 5;
@@ -119,7 +125,7 @@ public class GeneratorMap : MonoBehaviour
 	private void Update()
 	{
 		if (Input.GetKeyDown("g")) {
-			_prefabGround.Clear();
+			_prefabBlock.Clear();
 			Generate();
 		}
 	}

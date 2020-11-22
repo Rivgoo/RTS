@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class ChunkBlock : ChunkDefoult
+public class ChunkBlock : ChunkDefoult
 {
 	public Transform[] TreesPosition;
 	public Transform[] RocksPosition;

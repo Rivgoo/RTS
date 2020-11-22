@@ -53,13 +53,10 @@
      <Compile Include="Assets\Scripts\Game Building\GameResources.cs" />
      <Compile Include="Assets\Scripts\Game Building\IObject.cs" />
      <Compile Include="Assets\Scripts\Game Building\Tent.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\Chunk.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\ChunkDetails.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\ChunkGround.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\ChunkBlock.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\ChunkDefoult.cs" />
      <Compile Include="Assets\Scripts\Generator Map\ChunkIslandBase.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\GeneratorMap.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\Interface\ChunkBlock.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\Interface\ChunkDefoult.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\GeneratorIsland.cs" />
      <Compile Include="Assets\Scripts\SeasonGameWorld.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
