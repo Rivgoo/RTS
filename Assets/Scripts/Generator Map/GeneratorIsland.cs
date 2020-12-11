@@ -8,16 +8,18 @@ public class GeneratorIsland : MonoBehaviour
 	
 	[Header("Settings")]
 	public SaveIslandData IslandData;
-
+	
+	public CreatePrefabs[] PrefabResource;
+	
 	public void Generate()
 	{
 		CreateFirstChunk();
 		CreateSecondChunk();
-		CreateDetailsChunk();
+		CreatePrefabResource();
 	}
 	
 	private void Start()
-	{
+	{		
 		Generate();
 		ClearTempObjects();
 	}
@@ -26,16 +28,16 @@ public class GeneratorIsland : MonoBehaviour
 	{	
 		for (int i = 0; i < Prefab.IslandsBase[IslandData.IslandBaseID].GroundChunkPosition.Length; i++)
 		{
-			IslandData.PrefabBoxesID.Add(RandomInt(Prefab.Boxes.Length));
-			Prefab.ListBoxes.Add(Instantiate(Prefab.Boxes[IslandData.PrefabBoxesID[i]], Prefab.IslandsBase[IslandData.IslandBaseID].GroundChunkPosition[i].position, RandomRotate()));
+			IslandData.PrefabBoxesID.Add(RandomValue.NumberInt(Prefab.Boxes.Length));
+			Prefab.ListBoxes.Add(Instantiate(Prefab.Boxes[IslandData.PrefabBoxesID[i]], Prefab.IslandsBase[IslandData.IslandBaseID].GroundChunkPosition[i].position, RandomValue.RotationY()));
 		}
 	}
 			
 	private void CreateFirstChunk()
 	{
-		IslandData.IslandBaseID = RandomInt(Prefab.IslandsBase.Length);
+		IslandData.IslandBaseID = RandomValue.NumberInt(Prefab.IslandsBase.Length);
 		
-		IslandData.IslandBaseTransform = Instantiate(Prefab.IslandsBase[IslandData.IslandBaseID], transform.position, RandomRotate()).transform;
+		IslandData.IslandBaseTransform = Instantiate(Prefab.IslandsBase[IslandData.IslandBaseID], transform.position,RandomValue.RotationY()).transform;
 		
 //		_spawnedChunks.Add(Instantiate(ObjectsOsnova[Random.Range(0, ObjectsOsnova.Length)]));
 //		
@@ -45,34 +47,14 @@ public class GeneratorIsland : MonoBehaviour
 //        newChunk.transform.position = _spawnedChunks[_spawnedChunks.Count - 1].RightEnd.position - newChunk.LeftEnd.position;
 	}
 	
-	private void CreateDetailsChunk()
-	{			
-		for (int i = 0; i < Prefab.ListBoxes.Count; i++)
+	private void CreatePrefabResource()
+	{
+		
+		for (int i = 0; i < PrefabResource.Length; i++) 
 		{
-			for (int x = 0; x < Prefab.ListBoxes[i].TreesPosition.Length; x++)
-			{
-				IslandData.PrefabTreesID.Add(RandomInt(Prefab.Trees.Length));
-				Vector3 randomPosition = new Vector3(Prefab.ListBoxes[i].TreesPosition[x].position.x, Prefab.ListBoxes[i].TreesPosition[x].position.y, Prefab.ListBoxes[i].TreesPosition[x].position.z);
-				IslandData.PrefabTreesTransform.Add(Instantiate(Prefab.Trees[IslandData.PrefabTreesID[x]], Prefab.ListBoxes[i].TreesPosition[x].position, RandomRotate()).transform);
-			}
+			PrefabResource[i].InitPrefab(Prefab, IslandData);
+			PrefabResource[i].Create();
 		}
-		
-		
-	}
-	
-	private int RandomInt(int endValue)
-	{
-		return Random.Range(0, endValue);
-	}
-	
-	private Quaternion RandomRotate()
-	{
-		return Quaternion.Euler(0, Random.Range(-361,360), 0);
-	}
-	
-	private bool RandomBool()
-	{
-		return Random.Range(0,10) >= 5;
 	}
 	
 	private void ClearTempObjects()
@@ -95,3 +77,20 @@ public class GeneratorIsland : MonoBehaviour
 	}
 }
 
+public static class RandomValue
+{
+	public static int NumberInt(int endValue)
+	{
+		return Random.Range(0, endValue);
+	}
+	
+	public static Quaternion RotationY()
+	{
+		return Quaternion.Euler(0, Random.Range(-361,360), 0);
+	}
+	
+//	public static bool RandomBool()
+//	{
+//		return Random.Range(0,10) >= 5;
+//	}
+}

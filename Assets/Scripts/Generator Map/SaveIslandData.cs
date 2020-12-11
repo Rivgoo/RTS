@@ -10,7 +10,7 @@ public struct SaveIslandData
 	public Transform IslandBaseTransform;
 	[HideInInspector]
 	public List<Transform> PrefabBoxesTransform;
-	//[HideInInspector]
+	[HideInInspector]
 	public List<Transform> PrefabTreesTransform;
 	[HideInInspector]
 	public List<Transform> PrefabRocksTransform;

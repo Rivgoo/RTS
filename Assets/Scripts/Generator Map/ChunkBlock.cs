@@ -2,7 +2,7 @@
 
 public class ChunkBlock : ChunkDefoult
 {
-	public Transform[] TreesPosition;
-	public Transform[] RocksPosition;
-	public Transform[] GrassPosition;
+	public GameObject[] TreesPosition;
+	public GameObject[] RocksPosition;
+	public GameObject[] GrassPosition;
 }
