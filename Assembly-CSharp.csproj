@@ -53,15 +53,17 @@
      <Compile Include="Assets\Scripts\Game Building\GameResources.cs" />
      <Compile Include="Assets\Scripts\Game Building\IObject.cs" />
      <Compile Include="Assets\Scripts\Game Building\Tent.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\ChunkBlock.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\ChunkDefoult.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\ChunkIslandBase.cs" />
      <Compile Include="Assets\Scripts\Generator Map\CreatePrefabs.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\GeneratorIsland.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\IslandPrefab.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\Generator Islands\BaseChunk.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\Generator Islands\BoxChunk.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\Generator Islands\ChunkPrefabs.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\Generator Islands\ChunkPrefabsPosition.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\Generator Islands\GeneratorBaseChunk.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\Generator Islands\GeneratorBoxChunk.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\Generator Islands\GeneratorIsland.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\Generator Islands\SaveDataPrefab.cs" />
      <Compile Include="Assets\Scripts\Generator Map\Resource\TreePrefabs.cs" />
      <Compile Include="Assets\Scripts\Generator Map\RestrictionTreePlacement.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\SaveIslandData.cs" />
      <Compile Include="Assets\Scripts\SeasonGameWorld.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

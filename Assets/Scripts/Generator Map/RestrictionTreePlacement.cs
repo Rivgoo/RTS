@@ -8,11 +8,9 @@ public class RestrictionTreePlacement : MonoBehaviour {
 	
 	private SphereCollider col;
 	
-	public bool Distanse(Vector3 target)
+	public bool Distanse(Vector3 target, Vector3 basePosition)
 	{
-		//print("VID" + Math.Sqrt(Math.Pow(target.x - Centre.x, 2) + Math.Pow(target.y - Centre.y, 2)));
-
-		return Math.Sqrt(Math.Pow(target.x - transform.position.x, 2) + Math.Pow(target.y - transform.position.y, 2)) <= Radius;
+		return Math.Sqrt(Math.Pow(target.x - basePosition.x, 2) + Math.Pow(target.z - basePosition.z, 2)) <= Radius;
 	}
 	
 	public void VisualColider()
