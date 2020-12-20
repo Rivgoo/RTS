@@ -23,5 +23,5 @@ public struct ObjectData
 	
 	public MeshRenderer Renderer;
 
-	public Season ObjectSeason;
+	//public Season ObjectSeason;
 }

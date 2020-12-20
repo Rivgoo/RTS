@@ -1,9 +1,14 @@
 Assets/Prefab/
+Assets/PostProcessing/
+Assets/Scene/
+Assets/UI Resources/
+Assets/StreamingAssets/
 Prefab.meta
+PostProcessing.meta
+Scene.meta
+UI Resources.meta
+StreamingAssets.meta
 Temp/
 obj/
 Library/
-Main.unity
-Main.unity.meta
-Material/
-Material.meta
+
