@@ -8,16 +8,16 @@ namespace Generators
 		[Header("All Base Chunk")]
 		public BaseChunk[] Chunks;
 	
-		public DataObject BaseChunkData { get{ return _chunkData; } }
+		public DataObjectBase BaseChunkData { get{ return _chunkData; } }
 		
-		private DataObject _chunkData;
+		private DataObjectBase _chunkData;
 		
 		public void Create(Transform baseObject)
 		{
-			_chunkData.id = RandomValue.Number(Chunks.Length);
+			_chunkData.Id = RandomValue.Number(Chunks.Length);
 			_chunkData.Rotation = RandomValue.RotationY();
 			
-			Instantiate(Chunks[_chunkData.id].Chunk, new Vector3(0,0,0),_chunkData.Rotation,  baseObject);
+			Instantiate(Chunks[_chunkData.Id].Chunk, new Vector3(0,0,0),_chunkData.Rotation,  baseObject);
 		}
 	}
 }

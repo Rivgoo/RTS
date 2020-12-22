@@ -2,12 +2,10 @@
 
 namespace Chunks
 {
-	public class BoxChunk : MonoBehaviour
+	public class BoxChunk : ChunkItem
 	{
-		[HideInInspector]
-		public DataObject Data;
-		[Header("Box Chunk")]
-		public GameObject Chunk;
+		[Header("Trees Prefab")]
+		public ChunkItem[] Trees;
 		[Header("Trees Position")]
 		public Transform[] TreesPosition;
 		

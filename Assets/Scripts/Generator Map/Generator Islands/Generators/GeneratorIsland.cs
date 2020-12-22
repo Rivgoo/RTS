@@ -9,7 +9,8 @@ namespace Generators
 		[SerializeField]
 		private GeneratorBoxChunk _boxChunk; 
 		[SerializeField]
-		private GeneratorTrees _treeItem;
+		private GeneratorBoxChunk _smallIslandChunk; 
+		
 		
 		[HideInInspector]
 		public bool IsPlayGame = false;
@@ -20,11 +21,9 @@ namespace Generators
 		{
 			CreateBaseChunk(this.gameObject.transform);
 	
-			CreateBoxChunks(_baseChunk.Chunks[_baseChunk.BaseChunkData.id].PositionBoxChunk,this.gameObject.transform);
-		
-			CreateSmallIsland(_baseChunk.Chunks[_baseChunk.BaseChunkData.id].PositionSmallChunk, this.gameObject.transform);
-			
-			CreateTree(_boxChunk);
+			CreateBoxChunks(_baseChunk.Chunks[_baseChunk.BaseChunkData.Id].PositionBoxChunk,this.gameObject.transform);
+			CreateSmallIsland(_baseChunk.Chunks[_baseChunk.BaseChunkData.Id].PositionSmallChunk, this.gameObject.transform);
+					
 			//CreateTree(_baseChunk);
 	
 			ClearTempObjects();
@@ -55,30 +54,10 @@ namespace Generators
 		{		
 			if (Settings.SmallIslands)
 			{
-				_boxChunk.Create(positionSmallIsland, baseObject, true);		
+				_smallIslandChunk.Create(positionSmallIsland, baseObject);		
 			}
 		}
-		
-		private void CreateTree(GeneratorBaseChunk baseChunk)
-		{
-			_treeItem.Create(baseChunk);
-			var treeData = _treeItem.TreesData; 
-		}
-		
-		private void CreateTree(GeneratorBoxChunk boxChunk)
-		{
-			_treeItem.Create(boxChunk);
-			var treeData = _treeItem.TreesData; 
-		}
-		
-	//	private void CreatePrefabResource()
-	//	{	
-	//		for (int i = 0; i < Prefab.Boxes.Length; i++) 
-	//		{
-	//			Prefab.Boxes[i].TreesPrefab.InitPrefab(Prefab, IslandData);
-	//			Prefab.Boxes[i].TreesPrefab.Create();
-	//		}
-	//	} 
+		 
 		private void ClearTempObjects()
 		{
 			if (Settings.CleanTempItems)

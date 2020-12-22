@@ -6,34 +6,22 @@ namespace Generators
 {
 	public class GeneratorTrees : MonoBehaviour
 	{
-		[Header("Trees")]
-		public ChunkItem[] TreeItems;
-		
-		public List<DataObjectFull> TreesData{ get{ return _treesData; } }
-		private List<DataObjectFull> _treesData = new List<DataObjectFull>(); 
-		
-		public void Create(GeneratorBoxChunk boxChunk)
+		public static DataObjectBase[] Create(BoxChunk boxChunk, Transform parentPosition)
 		{
-			for (int i = 0; i < boxChunk.BoxsDataChunk.Length; i++)
-			{
-				for (int x = 0; x < boxChunk.Chunks[ boxChunk.BoxsDataChunk[i].id].TreesPosition.Length; x++)
-				{
-					var tempData = new DataObjectFull();
-					
-					tempData.Position = boxChunk.Chunks[ boxChunk.BoxsDataChunk[i].id].TreesPosition[x].position;
-					tempData.id = RandomValue.Number(TreeItems.Length);
-					tempData.Rotation = RandomValue.RotationY();
-				
-					_treesData.Add(tempData);
-					Instantiate(TreeItems[_treesData[i + x].id].Chunk, _treesData[i + x].Position, _treesData[i + x].Rotation);
-				}
-			}
-		}
-		
-		public void Create(GeneratorBaseChunk baseChunk)
-		{
-			//_treesData = new DataObjectPosition[1];
+			var treesData = new DataObjectBase[boxChunk.TreesPosition.Length];
 			
+			int numberSpawnTrees = RandomValue.Number(boxChunk.TreesPosition.Length + 1);
+			
+			for (int x = 0; x < numberSpawnTrees; x++)
+			{		
+				treesData[x].Position = boxChunk.TreesPosition[x].position;
+				treesData[x].Id = RandomValue.Number(boxChunk.Trees.Length);
+				treesData[x].Rotation = RandomValue.RotationY();	
+
+				Instantiate(boxChunk.Trees[treesData[x].Id].Chunk, treesData[x].Position,treesData[x].Rotation, parentPosition);		
+			}
+			
+			return treesData;
 		}
 	}
 }

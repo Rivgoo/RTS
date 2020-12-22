@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{86FE4177-20D0-A392-E1CB-DAB6427051F4}</ProjectGuid>
+    <ProjectGuid>{FFBBC694-F9B0-4C80-B80A-74A93686E084}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -98,7 +98,6 @@
      <Compile Include="Assets\Scripts\Game Building\GameResources.cs" />
      <Compile Include="Assets\Scripts\Game Building\IObject.cs" />
      <Compile Include="Assets\Scripts\Game Building\Tent.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\CreatePrefabs.cs" />
      <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Chunks\BaseChunk.cs" />
      <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Chunks\BoxChunk.cs" />
      <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Chunks\ChunkItem.cs" />
@@ -107,13 +106,15 @@
      <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Generators\GeneratorBaseChunk.cs" />
      <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Generators\GeneratorBoxChunk.cs" />
      <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Generators\GeneratorIsland.cs" />
+     <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Generators\GeneratorSmallIsland.cs" />
      <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Generators\GeneratorTrees.cs" />
      <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Generators\SettingsIslandGenerator.cs" />
      <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Object\DataObject.cs" />
      <Compile Include="Assets\Scripts\Generator Map\Generator Islands\Other Scripts\RandomValue.cs" />
-     <Compile Include="Assets\Scripts\Generator Map\Resource\TreePrefabs.cs" />
      <Compile Include="Assets\Scripts\Generator Map\RestrictionTreePlacement.cs" />
      <Compile Include="Assets\Scripts\Menu\Console.cs" />
+     <Compile Include="Assets\Scripts\Menu\FirstMenu\QuitApplication.cs" />
+     <Compile Include="Assets\Scripts\Menu\ShowPanelOnMouseEnter.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />
